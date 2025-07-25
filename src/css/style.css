@@ -118,17 +118,37 @@ button {
 
 /* Cart icon styles */
 .cart {
-  padding-top: 1em;
   position: relative;
   text-align: center;
+  padding-top: 1em;
 }
 
 .cart svg {
-  width: 25px;
+  width: 40px;
+  height: auto;
+  display: block;
+  margin: auto;
+  position: relative;
 }
 
 .cart:hover svg {
   fill: gray;
+}
+
+.cart-count {
+  position: absolute;
+  bottom: 5px;
+  right: 3px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 1px 5px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  display: none;
+  line-height: 1;
+  z-index: 2;
+  box-shadow: 0 0 3px white;
 }
 
 /* End cart icon styles */
