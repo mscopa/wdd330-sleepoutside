@@ -50,6 +50,15 @@ async function loadTemplate(path) {
   return template;
 }
 
+export function updateCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const countElement = document.querySelector("#cart-count");
+  if (countElement) {
+    countElement.textContent = cartItems.length;
+    countElement.style.display = cartItems.length > 0 ? "block" : "none";
+  }
+}
+
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const footerTemplate = await loadTemplate("../partials/footer.html");
@@ -59,4 +68,8 @@ export async function loadHeaderFooter() {
   
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+
+  setTimeout(() => {
+    updateCartCount();
+  }, 100)
 }
