@@ -25,10 +25,20 @@ export default class ShoppingCart {
 
     async init() {
         this.renderCart();
+        this.displayTotal();
     }
 
     renderCart() {
         const cartItems = getLocalStorage("so-cart") || [];
         renderListWithTeplate(cartItemTemplate, this.listElement, cartItems);
+    }
+    displayTotal() {
+      const cartItems = getLocalStorage("so-cart") || [];
+      if (cartItems.length !== 0) {
+        const total = cartItems.reduce((acc, item) => acc + item.FinalPrice, 0);
+        const footer = document.querySelector(".cart-footer");
+        footer.classList.remove("hide");
+        footer.textContent = `Total: $${total.toFixed(2)}`;
+      }
     }
 }
