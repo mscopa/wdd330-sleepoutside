@@ -20,7 +20,7 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
-      <form action="/" method="POST" class="checkout-form">
+      <form action="/" method="POST" class="checkout-form" name="checkoutForm" id="checkoutForm">
         <fieldset>
           <legend>Customer Name</legend>
           <label for="fname">First Name</label>
@@ -30,8 +30,8 @@
         </fieldset>
         <fieldset>
           <legend>Address</legend>
-          <label for="address">Street Address</label>
-          <input type="text" id="address" name="address" required />
+          <label for="street">Street Address</label>
+          <input type="text" id="street" name="street" required />
           <label for="city">City</label>
           <input type="text" id="city" name="city" required />
           <label for="state">State</label>
@@ -41,31 +41,22 @@
         </fieldset>
         <fieldset>
           <legend>Payment</legend>
-          <label for="creditCardNumber">Credit Card Number</label>
-          <input
-            type="text"
-            id="creditCardNumber"
-            name="creditCardNumber"
-            required
-          />
-          <label for="expirationDate">Expiration Date</label>
-          <input
-            type="text"
-            id="expirationDate"
-            name="expirationDate"
-            required
-          />
-          <label for="securityCode">Security Code</label>
-          <input type="text" id="securityCode" name="securityCode" required />
+          <label for="cardNumber">Credit Card Number</label>
+          <input type="text" id="cardNumber" name="cardNumber" required />
+          <label for="expiration">Expiration Date</label>
+          <input type="text" id="expiration" name="expiration" required />
+          <label for="code">Security Code</label>
+          <input type="text" id="code" name="code" required />
         </fieldset>
-        <button class="checkout-button">Checkout</button>
+        <button class="checkout-button" id="checkoutSubmit">Checkout</button>
       </form>
-      <section class="order-summary">
+      <section class="checkout-summary" id="checkoutSummary">
         <h3>Order Summary</h3>
-        <p>Subtotal: $XX.XX</p>
-        <p>Tax: $YY.YY</p>
-        <p>Shipping: $ZZ.ZZ</p>
-        <p>Total: $TT.TT</p>
+        <p>Quantity: <span id="num-items">XX</span></p>
+        <p>Subtotal: <span id="cartTotal">$XX.XX</span></p>
+        <p>Tax: <span id="tax">Add zip code</span></p>
+        <p>Shipping: <span id="shipping">Add zip code</span></p>
+        <p>Total: <span id="orderTotal"></span></p>
       </section>
     </main>
 

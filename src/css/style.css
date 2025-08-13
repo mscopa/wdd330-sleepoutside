@@ -299,6 +299,116 @@ button {
   }
 }
 
+/* Checkout Page Styles */
+.checkout-form {
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.checkout-form fieldset {
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checkout-form legend {
+  padding: 0 0.5rem;
+  font-weight: bold;
+  color: var(--tertiary-color);
+}
+
+.checkout-form label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: var(--small-font);
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 3px;
+  font-size: var(--font-base);
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: var(--large-font);
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+  background-color: var(--tertiary-color);
+}
+
+.checkout-summary {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.checkout-summary h3 {
+  color: var(--tertiary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.checkout-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  padding: 0.25rem 0;
+}
+
+.checkout-summary span {
+  font-weight: bold;
+}
+
+/* Layout for larger screens */
+@media screen and (min-width: 768px) {
+  main.divider {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .products {
+    width: 100%;
+  }
+  
+  .checkout-form {
+    width: 58%;
+    padding-right: 2%;
+  }
+  
+  .checkout-summary {
+    width: 38%;
+    align-self: flex-start;
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+/* Validation styles */
+.checkout-form input:invalid {
+  border-color: #ff6b6b;
+}
+
+.checkout-form input:valid {
+  border-color: #51cf66;
+}
+
 footer {
   font-size: var(--small-font);
   padding: 1em;

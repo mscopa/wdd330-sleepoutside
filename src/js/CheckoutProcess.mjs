@@ -42,21 +42,32 @@ export default class CheckoutProcess {
 
   init() {
     this.list = getLocalStorage(this.key);
-    this.calculateItemSummary();
+    this.calculateItemSubTotal();
   }
 
   calculateItemSubTotal() {
     // calculate and display the total dollar amount of the items in the cart, and the number of items.
-    
+    const summaryElement = document.querySelector(
+      this.outputSelector + " #cartTotal"
+    );
+    const itemNumElement = document.querySelector(
+      this.outputSelector + " #num-items"
+    );
+    itemNumElement.innerText = this.list.length;
+    const amounts = this.list.map((item) => item.FinalPrice);
+    this.itemTotal = amounts.reduce((sum, item) => sum + item);
+    summaryElement.innerText = `$${this.itemTotal}`;;
   }
 
   calculateOrderTotal() {
     // calculate the tax and shipping amounts. Add those to the cart total to figure out the order total
-    this.tax = (this.itemTotal * 0.06);
-    this.shipping = (this.itemTotal > 50) ? 0 : 5.99;
-    // if the item total is greater than $50, shipping is free.
-    this.orderTotal = this.itemTotal + this.tax + this.shipping;
-
+    this.tax = (this.itemTotal * .06);
+    this.shipping = 10 + (this.list.length - 1) * 2;
+    this.orderTotal = (
+      parseFloat(this.itemTotal) +
+      parseFloat(this.tax) +
+      parseFloat(this.shipping)
+    );
     // display the totals.
     this.displayOrderTotals();
   }
@@ -64,9 +75,12 @@ export default class CheckoutProcess {
   displayOrderTotals() {
     // once the totals are all calculated display them in the order summary page
     const tax = document.querySelector(`${this.outputSelector} #tax`);
-
+    const shipping = document.querySelector(`${this.outputSelector} #shipping`);
+    const orderTotal = document.querySelector(`${this.outputSelector} #orderTotal`);
 
     tax.innerText = `$${this.tax.toFixed(2)}`;
+    shipping.innerText = `$${this.shipping.toFixed(2)}`;
+    orderTotal.innerText = `$${this.orderTotal.toFixed(2)}`;
   }
 
   async checkout(form) {
@@ -74,6 +88,18 @@ export default class CheckoutProcess {
   // convert the form data to a JSON order object using the formDataToJSON function
   // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
   // call the checkout method in the ExternalServices module and send it the JSON order data.
-  
+  const order = formDataToJSON(form);
+  order.orderDate = new Date().toISOString();
+  order.orderTotal = this.orderTotal;
+  order.tax = this.tax;
+  order.shipping = this.shipping;
+  order.items = packageItems(this.list);
+
+  try {
+    const response = await services.checkout(order);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
   }
 }
