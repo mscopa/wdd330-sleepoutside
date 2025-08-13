@@ -409,6 +409,39 @@ button {
   border-color: #51cf66;
 }
 
+/* Alert styles */
+.alert {
+  background-color: var(--primary-color);
+  color: var(--dark-grey);
+  font-weight: bold;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert p {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.alert span {
+  cursor: pointer;
+  font-size: var(--large-font);
+  font-weight: bold;
+  color: var(--dark-grey);
+  margin-left: 1rem;
+  padding: 0 0.5rem;
+}
+
+.alert span:hover {
+  color: var(--tertiary-color);
+}
+
 footer {
   font-size: var(--small-font);
   padding: 1em;

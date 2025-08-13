@@ -12,7 +12,10 @@ document
 
 document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
   e.preventDefault();
-
-const form = document.querySelector("#checkoutForm");
-order.checkout(form);
+  const form = document.querySelector("#checkoutForm");
+  const chk_status = form.checkValidity();
+  form.reportValidity();
+  if (chk_status) {
+    order.checkout(form);
+  }
 });
